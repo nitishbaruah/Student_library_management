@@ -35,4 +35,12 @@ public class StudentService {
 
         return"Student added Successfully and Card generated";
     }
+    public String findStudentByEmail(String email){
+        Student student= studentRepository.findByEmail(email);
+
+        return student.getName();
+    }
+
+
+
 }
