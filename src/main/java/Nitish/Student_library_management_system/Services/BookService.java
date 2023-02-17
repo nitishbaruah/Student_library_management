@@ -8,16 +8,17 @@ import Nitish.Student_library_management_system.Respositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookService {
     @Autowired
     AuthorRepository authorRepository;
 
-    @Autowired
-    BookRepository bookRepository;
 
     public String addBook(BookEntryDTO book){
-        Author author=authorRepository.findById(book.getAuthorId()).get();
+        int authorId= book.getAuthorId();
+        Author author=authorRepository.findById(authorId).get();
         Book newBook= new Book();
         newBook.setPages(book.getPages());
         newBook.setAuthor(author);
@@ -25,7 +26,8 @@ public class BookService {
         newBook.setGenre(book.getGenre());
         newBook.setIssued(false);
 
-        author.getBookList().add(newBook);
+        List<Book> currentBookList= author.getBookList();
+        currentBookList.add(newBook);
         authorRepository.save(author);
 
         return"Book added Successfully";

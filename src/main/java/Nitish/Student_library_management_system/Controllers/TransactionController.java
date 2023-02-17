@@ -15,8 +15,12 @@ public class TransactionController {
     TransactionService transactionService;
 
     @PostMapping("/issueBook")
-    public String issueBook(@RequestBody() IssueBookDTO issueBookDTO)throws Exception {
-        return transactionService.issueBook(issueBookDTO);
+    public String issueBook(@RequestBody() IssueBookDTO issueBookDTO){
+        try{
+            return transactionService.issueBook(issueBookDTO);
+        }catch (Exception e){
+            return e.getMessage();
+        }
     }
 
 }

@@ -27,8 +27,10 @@ public class TransactionService {
 
     public String issueBook(IssueBookDTO issueBookDTO) throws Exception {
         Transactions transactions= new Transactions();
-        Book book=bookRepository.findById(issueBookDTO.getBookId()).get();
-        CardId card=cardIdRepository.findById(issueBookDTO.getCardId()).get();
+        int bookID=issueBookDTO.getBookId();
+        int cardID=issueBookDTO.getCardId();
+        Book book=bookRepository.findById(bookID).get();
+        CardId card=cardIdRepository.findById(cardID).get();
 
         transactions.setBook(book);
         transactions.setCardId(card);
