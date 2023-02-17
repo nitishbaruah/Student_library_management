@@ -1,5 +1,6 @@
 package Nitish.Student_library_management_system.Controllers;
 
+import Nitish.Student_library_management_system.DTOs.StudentEntryDTO;
 import Nitish.Student_library_management_system.Models.Student;
 import Nitish.Student_library_management_system.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ public class StudentController {
     StudentService studentService;
 
     @PostMapping("/add")
-    public String addStudent(@RequestBody Student student){
+    public String addStudent(@RequestBody StudentEntryDTO student){
 
         return studentService.addStudent(student);
     }

@@ -3,6 +3,8 @@ package Nitish.Student_library_management_system.Models;
 import Nitish.Student_library_management_system.Enums.Genre;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="Books")
@@ -23,12 +25,41 @@ public class Book {
     @JoinColumn //Add an extra attribute of AuthorId(Parent table) for the foreign key at the child table
     private Author author;
 
+    private boolean issued;
+
+    public boolean isIssued() {
+        return issued;
+    }
+
+    public void setIssued(boolean issued) {
+        this.issued = issued;
+    }
+
+    public CardId getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(CardId cardId) {
+        this.cardId = cardId;
+    }
+
+    public List<Transactions> getTransactionsList() {
+        return transactionsList;
+    }
+
+    public void setTransactionsList(List<Transactions> transactionsList) {
+        this.transactionsList = transactionsList;
+    }
+
     @ManyToOne
     @JoinColumn
     private CardId cardId;
 
-    public Book() {
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Transactions> transactionsList;
 
+    public Book() {
+        this.transactionsList=new ArrayList<>();
     }
 
     //Setter and Getter

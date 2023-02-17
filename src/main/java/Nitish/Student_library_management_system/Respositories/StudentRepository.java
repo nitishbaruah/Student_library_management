@@ -11,3 +11,4 @@ public interface StudentRepository extends JpaRepository<Student,Integer> {
 
     List<Student> findByCountry(String country);
 }
+
